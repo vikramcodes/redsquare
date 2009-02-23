@@ -1,5 +1,5 @@
 //
-//  MyCustonView.h
+//  MyCustomView.h
 //  RedSquare
 //
 //  Created by vikramtank on 2/23/09.
@@ -16,6 +16,7 @@
 	CGFloat					   centery;
 	CGColorRef                 aColor;
 	BOOL                       twoFingers;
+	BOOL					   oneFinger;
 	
 	IBOutlet UILabel           *xField;
 	IBOutlet UILabel           *yField;

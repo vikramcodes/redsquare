@@ -18,6 +18,7 @@
 	// you have to initialize your view here since it's getting
 	// instantiated by the nib
 	squareSize = 100.0f;
+	oneFinger = NO;
 	twoFingers = NO;
 	rotation = 0.5f;
 	// You have to explicity turn on multitouch for the view
@@ -59,7 +60,9 @@
 {
 	NSLog(@"touches began count %d, %@", [touches count], touches);
 	
-
+	if([touches count]==1) {
+		oneFinger = YES;
+	}
 	if([touches count] > 1)
 	{
 		twoFingers = YES;
@@ -72,11 +75,11 @@
 - (void) touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
 {
 	NSLog(@"touches moved count %d, %@", [touches count], touches);
-	
+	if (oneFinger) {
 	UITouch *touch = [touches anyObject];
     CGPoint currentTouchPosition = [touch locationInView:self];
 	rotation = atan2(centery - currentTouchPosition.y , centerx - currentTouchPosition.x);
-	
+	}
 	// tell the view to redraw
 	[self setNeedsDisplay];
 }
@@ -87,6 +90,7 @@
 	
 	// reset the var
 	twoFingers = NO;
+	oneFinger = NO;
 	
 	// tell the view to redraw
 	[self setNeedsDisplay];
